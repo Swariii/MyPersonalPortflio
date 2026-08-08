@@ -1486,14 +1486,27 @@ h4 {
   place-items: center;
   border: 1px solid var(--stroke);
   background: var(--glass);
-  font-size: 0.8rem;
-  font-weight: 700;
-  transition: 0.3s;
+  color: var(--text);
+  font-size: 1.1rem;
+  text-decoration: none;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
 }
+
 .social:hover {
   background: var(--grad);
-  transform: translateY(-4px);
+  color: #fff;
+  transform: translateY(-4px) scale(1.05);
+  border-color: transparent;
   box-shadow: var(--glow);
+}
+
+.social i {
+  line-height: 1;
 }
 .contact-form {
   padding: 36px;
