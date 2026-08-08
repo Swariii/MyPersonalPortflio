@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Premium Developer Portfolio - Futuristic, Interactive, and Designed for Impact." />
+  <title>SwaDev — College Developer</title>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<!-- GSAP + ScrollTrigger + Lenis -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js" defer></script>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/developer.css">
+</head>
+<body>
+  <!-- ====== CUSTOM CURSOR ====== -->
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+  <!-- ====== BACKGROUND FX LAYERS ====== -->
+  <div class="bg" aria-hidden="true">
+    <canvas id="neural-canvas"></canvas>
+    <div class="bg-aurora"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-blobs">
+      <span class="blob b1"></span>
+      <span class="blob b2"></span>
+      <span class="blob b3"></span>
+    </div>
+    <div class="bg-noise"></div>
+    <div class="bg-stars" id="stars"></div>
+    <div class="bg-rays"></div>
+    <div class="bg-fog"></div>
+  </div>
+
+  <!-- ====== PROGRESS BEAM ====== -->
+  <div class="progress-beam" id="progressBeam"></div>
+
+  <!-- ====== NAVIGATION ====== -->
+  <header class="nav glass" id="navbar">
+    <a href="#hero" class="nav-logo" aria-label="Home">
+      <span class="logo-mark"></></span>
+      <span class="logo-text">swari.dev</span>
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn-ghost nav-btn">Hire Me</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ====== HERO ====== -->
+    <section class="hero section" id="hero">
+      <div class="hero-orbits" aria-hidden="true">
+        <span class="orbit o1"><i class="tech-tag">⚛</i></span>
+        <span class="orbit o2"><i class="tech-tag">▲</i></span>
+        <span class="orbit o3"><i class="tech-tag">◆</i></span>
+        <span class="orbit o4"><i class="tech-tag">●</i></span>
+      </div>
+      <div class="hero-code float-code c1" aria-hidden="true">
+        <pre><code><span class="tk">const</span> dev = {
+  name: <span class="ts">"Swari"</span>,
+  craft: <span class="ts">"web"</span>,
+  loves: [<span class="ts">"design"</span>, <span class="ts">"backend developing"</span>]
+};</code></pre>
+      </div>
+      <div class="hero-code float-code c2" aria-hidden="true">
+        <pre><code><span class="tk">while</span>(alive) {
+  <span class="fn">build</span>().and(<span class="fn">inspire</span>());
+}</code></pre>
+      </div>
+
+      <div class="container hero-inner">
+        <div class="hero-left" data-depth="1">
+          <div class="terminal-card glass" id="terminal">
+            <div class="term-bar"><span></span><span></span><span></span><em>swari@dev: ~</em></div>
+            <div class="term-body">
+              <p><b class="tp">➜</b> <span id="terminalOutput"></span><span class="caret">▊</span></p>
+            </div>
+          </div>
+          <p class="hero-eyebrow reveal">✦ Hello world, I'm</p>
+          <h1 class="hero-title">
+            <span class="line line-1">Ser John Rempillo</span>
+            <span class="line line-2 gradient-text" id="typeLine"></span>
+          </h1>
+          <p class="hero-sub reveal">
+            I craft <span class="hl">web application and more</span> from interface to backend. Hire me as your web
+          designer or backend developer.
+          </p>
+          <div class="hero-cta reveal">
+            <a href="#projects" class="btn btn-primary magnetic">View Projects <span class="arrow">→</span></a>
+            <a href="#contact" class="btn btn-ghost magnetic">Contact Me</a>
+          </div>
+          <div class="hero-meta reveal">
+            <div class="meta-item"><b>2+</b><span>Years Exp.</span></div>
+            <div class="meta-item"><b>10+</b><span>Projects</span></div>
+            <div class="meta-item"><b>Be my first</b><span>Clients</span></div>
+          </div>
+        </div>
+
+        <div class="hero-right" data-depth="2">
+          <div class="profile-wrap tilt">
+            <div class="profile-ring"></div>
+            <div class="profile-card glass">
+              <div class="avatar-glow"></div>
+              <div class="avatar">
+                <img src="pfp2.png" alt="Ser John Rempillo — Full Stack Developer" width="90" height="90" />
+              </div>
+              <div class="profile-info">
+                <h3>Ser John Rempillo</h3>
+                <p>Future Full Stack Developer</p>
+                <span class="status"><i></i> Available for freelance</span>
+              </div>
+            </div>
+            <div class="float-tag ft1 glass">⚛ .NET</div>
+            <div class="float-tag ft2 glass">✦ Java</div>
+            <div class="float-tag ft3 glass">■ Web Api</div>
+          </div>
+        </div>
+      </div>
+      <a href="#about" class="scroll-ind" aria-label="Scroll to about">
+        <span class="mouse"><span class="wheel"></span></span>
+        <em>scroll</em>
+      </a>
+    </section>
+
+    <!-- ====== MARQUEE ====== -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Creative Development</span><span>✦</span>
+        <span>Python</span><span>✦</span>
+        <span>Motion Design</span><span>✦</span>
+        <span>UI/UX</span><span>✦</span>
+        <span>Backend Developer</span><span>✦</span>
+        <span>Creative Development</span><span>✦</span>
+        <span>Web Api</span><span>✦</span>
+        <span>.Net</span><span>✦</span>
+        <span>SQL Database</span><span>✦</span>
+        <span>Java</span><span>✦</span>
+        <span>Creative Development</span><span>✦</span>
+        <span>Python</span><span>✦</span>
+        <span>Motion Design</span><span>✦</span>
+        <span>UI/UX</span><span>✦</span>
+        <span>Backend Developer</span><span>✦</span>
+        <span>Creative Development</span><span>✦</span>
+        <span>Web Api</span><span>✦</span>
+        <span>.Net</span><span>✦</span>
+        <span>SQL Database</span><span>✦</span>
+        <span>Java</span><span>✦</span>
+      </div>
+    </div>
+
+    <!-- ====== ABOUT ====== -->
+    <section class="section about" id="about">
+      <div class="container">
+        <div class="sec-head reveal">
+          <span class="sec-tag">01 · About</span>
+          <h2 class="sec-title">The developer behind <span class="gradient-text">the pixels</span></h2>
+        </div>
+        <div class="about-grid">
+<div class="about-photo tilt reveal">
+            <img src="Profilepic.jpg" alt="Ser John Rempillo — Full Stack Developer" />
+            <div class="photo-glow"></div>
+            <div class="exp-badge glass"><b>2+</b><span>Years of<br/>craft</span></div>
+          </div>
+          <div class="about-text">
+            <p class="reveal">
+  I'm a <span class="hl">BSIT student</span> with a passion for web development, UI/UX design, and creating modern digital experiences. I enjoy turning ideas into responsive, interactive websites while continuously improving my programming and design skills through personal projects and hands-on learning.
+</p>
+            <p class="reveal">
+              My superpower? Turning complex ideas into <span class="hl">smooth, delightful
+              interfaces</span> powered by clean code and obsessive attention to detail.
+            </p>
+            <div class="about-counters reveal">
+              <div class="counter-box"><b class="count" data-target="10">0</b><span>Projects Delivered</span></div>
+              <div class="counter-box"><b class="count" data-target="5">0</b><span>% Client Satisfaction</span></div>
+              <div class="counter-box"><b class="count" data-target="2">0</b><span>Design Awards</span></div>
+            </div>
+            <a href="#contact" class="btn btn-primary magnetic reveal">Let's Collaborate →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== SKILLS ====== -->
+    <section class="section skills" id="skills">
+      <div class="container">
+        <div class="sec-head center reveal">
+          <span class="sec-tag">02 · Skills</span>
+          <h2 class="sec-title">Obtained <span class="gradient-text">disciplines</span></h2>
+        </div>
+        <div class="skills-grid">
+          <article class="skill-card glass tilt reveal">
+            <div class="skill-ic"></div>
+            <h3>UI / UX Design</h3>
+            <div class="bar"><span class="bar-fill" data-w="80"></span></div>
+            <p>80%</p>
+          </article>
+          <article class="skill-card glass tilt reveal" data-delay="1">
+            <div class="skill-ic"></div>
+            <h3>Frontend Dev</h3>
+            <div class="bar"><span class="bar-fill" data-w="45"></span></div>
+            <p>45%</p>
+          </article>
+          <article class="skill-card glass tilt reveal" data-delay="2">
+            <div class="skill-ic"></div>
+            <h3>Backend Dev</h3>
+            <div class="bar"><span class="bar-fill" data-w="20"></span></div>
+            <p>20%</p>
+          </article>
+          <article class="skill-card glass tilt reveal" data-delay="3">
+            <div class="skill-ic"></div>
+            <h3>Database</h3>
+            <div class="bar"><span class="bar-fill" data-w="40"></span></div>
+            <p>40%</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== TECH STACK ====== -->
+    <section class="section tech" id="tech">
+      <div class="container">
+        <div class="sec-head reveal">
+          <span class="sec-tag">03 · Tech Stack</span>
+          <h2 class="sec-title">My <span class="gradient-text">arsenal</span> of tools</h2>
+        </div>
+        <div class="tech-grid">
+          <span class="tech-chip glass reveal">React</span>
+          <span class="tech-chip glass reveal">TypeScript</span>
+          <span class="tech-chip glass reveal">Next.js</span>
+          <span class="tech-chip glass reveal">Node.js</span>
+          <span class="tech-chip glass reveal">Three.js</span>
+          <span class="tech-chip glass reveal">Visual Studio</span>
+          <span class="tech-chip glass reveal">VS Code</span>
+          <span class="tech-chip glass reveal">Figma</span>
+          <span class="tech-chip glass reveal">Xampp</span>
+          <span class="tech-chip glass reveal">Tailwind</span>
+          <span class="tech-chip glass reveal">Entity Framework</span>
+          <span class="tech-chip glass reveal">Python</span>
+        </div>
+        <div class="orbit-rings" aria-hidden="true">
+          <span class="ring r1"></span>
+          <span class="ring r2"></span>
+          <span class="ring r3"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== PROJECTS ====== -->
+    <section class="section projects" id="projects">
+  <div class="container">
+
+```
+<div class="sec-head center reveal">
+  <span class="sec-tag">04 · Projects</span>
+  <h2 class="sec-title">Selected <span class="gradient-text">work</span></h2>
+</div>
+
+<div class="projects-grid">
+
+  <!-- Pizzarap -->
+  <article class="project-card glass tilt reveal">
+    <div class="proj-media">
+      <img
+        src="Screenshot 2026-03-01 204621.png"
+        alt="Pizzarap website screenshot"
+      />
+
+      <div class="proj-overlay">
+        <a href="#" class="btn btn-ghost sm">Unavailable</a>
+      </div>
+    </div>
+
+    <div class="proj-body">
+      <h3>Pizzarap</h3>
+
+      <p>
+        A food ordering website designed for customers who want to
+        conveniently browse food, place orders, and receive an
+        automatically generated receipt.
+      </p>
+
+      <div class="tags">
+        <span>Database</span>
+        <span>HTML & CSS</span>
+        <span>Responsive Design</span>
+        <span>PHP</span>
+      </div>
+    </div>
+  </article>
+
+
+  <!-- OMNHS Library Management -->
+  <article class="project-card glass tilt reveal" data-delay="1">
+    <div class="proj-media">
+      <img
+        src="librarymanagementwebsite.png"
+        alt="OMNHS Library Management website screenshot"
+      />
+
+      <div class="proj-overlay">
+        <a href="#" id="showDevelopers" class="btn btn-ghost sm">
+          Developers
+        </a>
+      </div>
+    </div>
+
+    <div class="proj-body">
+      <h3>OMNHS Library Management</h3>
+
+      <p>
+        An online library management platform for OMNHS students that
+        allows users to reserve books in advance and manage borrowing
+        transactions with automatically generated receipts and barcodes.
+      </p>
+
+      <div class="tags">
+        <span>Web API</span>
+        <span>Database</span>
+        <span>Entity Framework</span>
+        <span>Barcode</span>
+      </div>
+    </div>
+  </article>
+
+
+  <!-- OMNHS Improvised Website -->
+  <article class="project-card glass tilt reveal" data-delay="2">
+    <div class="proj-media">
+      <img
+        src="omofficialwebsite.png"
+        alt="OMNHS improvised website screenshot"
+      />
+
+      <div class="proj-overlay">
+        <a href="#" class="btn btn-ghost sm">Unavailable</a>
+      </div>
+    </div>
+
+    <div class="proj-body">
+      <h3>OMNHS Improvised Website</h3>
+
+      <p>
+        An enhanced school website concept designed to provide students,
+        alumni, parents, and staff with easier access to school information
+        and online services, including a Form 137 request feature.
+      </p>
+
+      <div class="tags">
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>JavaScript</span>
+        <span>Responsive Design</span>
+      </div>
+    </div>
+  </article>
+
+</div>
+
+  </div>
+</section>
+
+
+    <!-- ====== EXPERIENCE + TIMELINE ====== -->
+    <section class="section experience" id="experience">
+      <div class="container">
+        <div class="sec-head reveal">
+          <span class="sec-tag">05 · Experience</span>
+          <h2 class="sec-title">Career <span class="gradient-text">timeline</span></h2>
+        </div>
+        <div class="timeline" id="timeline">
+          <div class="tl-line"></div>
+          <article class="tl-item reveal">
+            <div class="tl-dot"></div>
+            <div class="tl-card glass">
+              <span class="tl-date">2024 — 2025</span>
+              <h3>Student Java Developer · OMNHS</h3>
+              <p>Built application and mastering java programming and database managing.</p>
+            </div>
+          </article>
+          <article class="tl-item reveal">
+            <div class="tl-dot"></div>
+            <div class="tl-card glass">
+              <span class="tl-date">2025-2026 — Present</span>
+              <h3>Web Developer · Freelance</h3>
+              <p>Freelancing my classmates Performance Task. Built enormous number of webpages such as Food Ordering, Library Management, Calculator, and more.</p>
+            </div>
+          </article>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== SERVICES ====== -->
+    <section class="section services" id="services">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <span class="sec-tag">06 · Services</span>
+      <h2 class="sec-title">What I <span class="gradient-text">can do</span></h2>
+    </div>
+
+```
+<div class="services-grid">
+
+  <article class="service-card glass tilt reveal">
+    <div class="serv-ic"></div>
+    <h3>Website Development</h3>
+    <p>
+      I build responsive and functional websites using HTML, CSS, JavaScript,
+      PHP, and other technologies I’m currently learning.
+    </p>
+  </article>
+
+  <article class="service-card glass tilt reveal" data-delay="1">
+    <div class="serv-ic"></div>
+    <h3>Web & UI Design</h3>
+    <p>
+      I create modern, responsive interfaces with creative layouts,
+      animations, and interactive elements focused on a better user experience.
+    </p>
+  </article>
+
+  <article class="service-card glass tilt reveal" data-delay="2">
+    <div class="serv-ic"></div>
+    <h3>System Development</h3>
+    <p>
+      I develop school and personal projects such as inventory systems,
+      portals, management systems, and database-driven applications.
+    </p>
+  </article>
+
+</div>
+```
+
+  </div>
+</section>
+
+
+    <!-- ====== TESTIMONIALS ====== -->
+    <section class="section testimonials" id="testimonials">
+      <div class="container">
+        <div class="sec-head reveal">
+          <span class="sec-tag">07 · Testimonials</span>
+          <h2 class="sec-title">Loved by <span class="gradient-text">Professors</span></h2>
+        </div>
+        <div class="carousel" id="carousel">
+          <div class="carousel-track" id="carouselTrack">
+            <figure class="t-card glass">
+              <span class="quote-mark">"</span>
+              <blockquote>Galingan sa minsu ha..sana maging laude ka</blockquote>
+              <figcaption><b>Ereck Lionel C. Liwanag</b> · IT Professional Teacher</figcaption>
+            </figure>
+            <figure class="t-card glass">
+              <span class="quote-mark">"</span>
+              <blockquote>Deserved mo naman. Tuloy lang sa pag-abot ng iyong mga pangarap. 🥰</blockquote>
+              <figcaption><b>Clarisse Sale</b> · IT Professional Teacher</figcaption>
+            </figure>
+            <figure class="t-card glass">
+              <span class="quote-mark">"</span>
+              <blockquote>Ang ganda ng gawa mo dong dong, ang pogi pa at masarap. Pwetin mo kaya ako</blockquote>
+              <figcaption><b>Izar Miciano</b> · Baklang BSIT</figcaption>
+            </figure>
+            <figure class="t-card glass">
+              <span class="quote-mark">"</span>
+              <blockquote>Halimaw, ano gamit mo pogi?</blockquote>
+              <figcaption><b>Tristan Baldera</b> · Bisyang BSIT</figcaption>
+            </figure>
+          </div>
+          <div class="carousel-dots" id="carouselDots"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== ACHIEVEMENTS + GITHUB + STATS ====== -->
+    <section class="section achievements" id="achievements">
+      <div class="container">
+        <div class="sec-head center reveal">
+          <span class="sec-tag">08 · Achievements</span>
+          <h2 class="sec-title">Milestones & <span class="gradient-text">stats</span></h2>
+        </div>
+        <div class="ach-grid">
+<div class="stat-ring reveal" data-target="98" data-label="Lighthouse">
+            <svg viewBox="0 0 120 120"><defs><linearGradient id="grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#a855f7"/><stop offset="100%" stop-color="#6a0dad"/></linearGradient></defs><circle class="ring-bg" cx="60" cy="60" r="52"/><circle class="ring-fg" cx="60" cy="60" r="52"/></svg>
+            <div class="stat-center"><b class="count" data-target="98">0</b><span>%</span></div>
+          </div>
+          <div class="stat-ring reveal" data-target="120" data-label="Commits/Week">
+            <svg viewBox="0 0 120 120"><defs><linearGradient id="grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#a855f7"/><stop offset="100%" stop-color="#6a0dad"/></linearGradient></defs><circle class="ring-bg" cx="60" cy="60" r="52"/><circle class="ring-fg" cx="60" cy="60" r="52"/></svg>
+            <div class="stat-center"><b class="count" data-target="120">0</b><span>+</span></div>
+          </div>
+          <div class="stat-ring reveal" data-target="15" data-label="Open Source">
+            <svg viewBox="0 0 120 120"><defs><linearGradient id="grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#a855f7"/><stop offset="100%" stop-color="#6a0dad"/></linearGradient></defs><circle class="ring-bg" cx="60" cy="60" r="52"/><circle class="ring-fg" cx="60" cy="60" r="52"/></svg>
+            <div class="stat-center"><b class="count" data-target="15">0</b><span>+</span></div>
+          </div>
+        </div>
+
+        <div class="gh-card glass reveal">
+          <h3>GitHub Contributions</h3>
+          <div class="gh-heatmap" id="ghHeatmap"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== CONTACT ====== -->
+    <section class="section contact" id="contact">
+      <div class="container">
+        <div class="sec-head center reveal">
+          <span class="sec-tag">09 · Contact</span>
+          <h2 class="sec-title">Let's build something <span class="gradient-text">amazing</span></h2>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-info reveal">
+            <h3>Get in touch</h3>
+            <p>Have a project in mind? Let's create something extraordinary together.</p>
+            <div class="contact-item"><span class="ci">📧</span> rempilloserjohnd@gmail.com</div>
+            <div class="contact-item"><span class="ci">📍</span> Remote · Locality</div>
+            <div class="socials">
+              <a href="#" class="social magnetic" aria-label="GitHub">GH</a>
+              <a href="#" class="social magnetic" aria-label="LinkedIn">IN</a>
+              <a href="#" class="social magnetic" aria-label="Twitter">TW</a>
+              <a href="#" class="social magnetic" aria-label="Dribbble">DB</a>
+            </div>
+          </div>
+          <form class="contact-form glass reveal" id="contactForm" novalidate>
+            <div class="field">
+              <input type="text" id="name" placeholder=" " name="user_name" required />
+              <label for="name">Your Name</label>
+            </div>
+            <div class="field">
+              <input type="email" id="email" placeholder=" " name="user_email" required />
+              <label for="email">Email Address</label>
+            </div>
+            <div class="field">
+              <textarea id="message" rows="4" placeholder=" " name="message" required></textarea>
+              <label for="message">Your Message</label>
+            </div>
+            <button type="submit" class="btn btn-primary magnetic w-full">Send Message ✦</button>
+            <p class="form-note" id="formNote"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a href="#hero" class="nav-logo"><span class="logo-mark"></></span><span class="logo-text">SwaDev</span></a>
+      <nav class="foot-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a href="#hero" class="back-top magnetic" aria-label="Back to top">↑</a>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> SwariDev. Crafted with <span class="gradient-text">passion</span> & precision.</p>
+      <div class="clock glass" id="clock">--:--:--</div>
+    </div>
+  </footer>
+
+  <!-- ====== AI WIDGET (UI only) ====== -->
+  <div class="ai-widget glass" id="aiWidget" role="button" aria-label="Open AI assistant">
+    <span class="ai-pulse"></span>
+    <span class="ai-ic">✦</span>
+  </div>
+  <div class="developer-modal" id="developerModal">
+      <div class="developer-container">
+        <span class="close">&times;</span>
+
+        <h1>Meet Our Team</h1>
+        <p class="subtitle">The passionate minds behind this project.</p>
+
+        <div class="developer-grid">
+          <!-- Developer 1 -->
+          <div class="developer-card">
+            <div class="photo">
+              <img src="serjohn.png" alt="Ser John" />
+            </div>
+
+            <h2>Ser John Rempillo</h2>
+
+            <span class="role backend"> Backend Developer </span>
+
+            <p class="school">Oriental Mindoro National High School</p>
+
+            <div class="contact-card">
+              <h4>Contact</h4>
+              <p>09XX-XXX-XXXX</p>
+            </div>
+            <a
+              href="https://yourportfolio.com"
+              class="portfolio-btn"
+              target="_blank"
+            >
+              Visit Portfolio
+            </a>
+          </div>
+
+          <!-- Developer 2 -->
+          <div class="developer-card">
+            <div class="photo">
+              <img src="daniel.png" alt="Daniel" />
+            </div>
+
+            <h2>Daniel John Aguilucho</h2>
+
+            <span class="role frontend"> Frontend Developer </span>
+
+            <p class="school">Oriental Mindoro National High School</p>
+
+            <div class="contact-card">
+              <h4>Contact</h4>
+              <p>09XX-XXX-XXXX</p>
+            </div>
+            <a
+              href="https://yourportfolio.com"
+              class="portfolio-btn"
+              target="_blank"
+            >
+              Visit Portfolio
+            </a>
+          </div>
+
+          <!-- Developer 3 -->
+          <div class="developer-card">
+            <div class="photo">
+              <img src="ishaan.png" alt="Ishaan" />
+            </div>
+
+            <h2>Ishaan Xander Pingol</h2>
+
+            <span class="role designer"> UI / UX Designer </span>
+
+            <p class="school">Oriental Mindoro National High School</p>
+
+            <div class="contact-card">
+              <h4>Contact</h4>
+              <p>09XX-XXX-XXXX</p>
+            </div>
+            <a
+              href="https://yourportfolio.com"
+              class="portfolio-btn"
+              target="_blank"
+            >
+              Visit Portfolio
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  <script src="js/main.js" defer></script>
+  <script src="EmailJS.js"></script>
+  <script
+  type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script src="js/developerShow.js"></script>
+    <script>
+      emailjs.init({
+        publicKey: "g4znLgbbl2EHBNBhl",
+      });
+    </script>
+</body>
+</html>
