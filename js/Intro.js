@@ -12,7 +12,7 @@
   var DURATION = 3200;               // ilang ms bago umabot sa 100%
 
   var SOUND_ON = true;               // false = walang tunog
-  var SOUND_FILE = "audio/glitch.mp3";  // path ng sarili mong sound (galing sa index.html)
+  var SOUND_FILE = "Audio/glitch.mp3";  // path ng sarili mong sound (galing sa index.html)
   var SOUND_VOLUME = 0.8;            // 0 hanggang 1
   var STOP_ON_OPEN = false;          // true = puputulin ang tunog pag bumukas na ang curtain
 
