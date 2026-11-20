@@ -1,0 +1,17 @@
+/* =============================
+   THEME: Black Purple
+============================= */
+:root {
+  --bg: #000000;
+
+  --accent-950: #2d0054;
+  --accent-800: #6a0dad;
+  --accent-600: #a855f7;
+  --accent-300: #c084fc;
+
+  --accent-rgb: 168, 85, 247;
+  --accent-light-rgb: 192, 132, 252;
+  --accent-dark-rgb: 106, 13, 173;
+  --accent-deep-rgb: 45, 0, 84;
+  --nav-rgb: 10, 0, 20;
+}

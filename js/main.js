@@ -180,7 +180,7 @@
   const roles = [
     "Creative Developer",
     "Backend Developer",
-    "Database Manaaging",
+    "Database Management",
     "UI/UX Designer",
     "College Student",
   ];
@@ -213,33 +213,6 @@
     type();
   }
 
-  /* =========================================================
-     TERMINAL SIMULATION
-  ========================================================= */
-  const termOut = document.getElementById("terminalOutput");
-  if (termOut) {
-    const lines = [
-      "initializing portfolio...",
-      "loading: skills ✓",
-      "loading: projects ✓",
-      "loading: experience ✓",
-      "status: ready to build ✦",
-    ];
-    let li = 0,
-      ch = 0;
-    function write() {
-      termOut.textContent = lines[li].slice(0, ch);
-      if (ch < lines[li].length) {
-        ch++;
-        setTimeout(write, 45);
-      } else if (li < lines.length - 1) {
-        li++;
-        ch = 0;
-        setTimeout(write, 350);
-      }
-    }
-    setTimeout(write, 600);
-  }
 
   /* =========================================================
      NAVIGATION + SCROLL PROGRESS + NAV SCROLL
@@ -437,17 +410,40 @@
      GITHUB HEATMAP
   ========================================================= */
   const heat = document.getElementById("ghHeatmap");
-  if (heat) {
-    const cells = 156;
-    for (let i = 0; i < cells; i++) {
-      const c = document.createElement("span");
-      if (Math.random() < 0.55) {
-        const lvl = Math.floor(Math.random() * 4) + 1;
-        c.className = "gh-cell l" + lvl;
-      } else c.className = "gh-cell";
-      heat.appendChild(c);
+
+if (heat) {
+  const cols = 53;
+  const rows = 7;
+  const cells = cols * rows; // 371 cells
+
+  // Eksaktong pwesto at kulay (1-4) base sa picture: "col-row": level
+  const activeCells = {
+    "35-4": 1, // Jul (Friday) - dark green
+    "38-6": 4, // Aug (Saturday) - bright green
+    "39-5": 4, // Aug (Friday) - bright green
+    "40-2": 2, // Aug (Tuesday) - medium green
+    "41-2": 1, // Aug (Tuesday) - dark green
+    "52-0": 1, // Nov (Sunday) - dark green
+    "52-5": 4  // Nov (Friday) - bright green
+  };
+
+  for (let i = 0; i < cells; i++) {
+    const col = Math.floor(i / rows);
+    const row = i % rows;
+    const key = `${col}-${row}`;
+
+    const c = document.createElement("span");
+    const lvl = activeCells[key];
+
+    if (lvl) {
+      c.className = "gh-cell l" + lvl;
+    } else {
+      c.className = "gh-cell";
     }
+
+    heat.appendChild(c);
   }
+}
 
   /* =========================================================
      CONTACT FORM (validation)

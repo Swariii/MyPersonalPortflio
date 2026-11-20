@@ -1,0 +1,17 @@
+/* =============================
+   THEME: Black Orange
+============================= */
+:root {
+  --bg: #000000;
+
+  --accent-950: #4a2000;
+  --accent-800: #c2570c;
+  --accent-600: #ff8a1f;
+  --accent-300: #ffb866;
+
+  --accent-rgb: 255, 138, 31;
+  --accent-light-rgb: 255, 184, 102;
+  --accent-dark-rgb: 194, 87, 12;
+  --accent-deep-rgb: 74, 32, 0;
+  --nav-rgb: 20, 8, 0;
+}

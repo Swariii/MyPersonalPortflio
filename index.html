@@ -27,6 +27,12 @@
 />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/developer.css">
+  <link rel="stylesheet" href="css/theme-switcher.css" />
+  <!-- Theme switcher: walang defer para maiload agad ang theme (walang flash) -->
+  <script src="js/theme-switcher.js"></script>
+  <link rel="stylesheet" href="css/intro.css" />
+  <!-- Intro/loading screen: walang defer -->
+  <script src="js/intro.js"></script>
 </head>
 <body>
   <!-- ====== CUSTOM CURSOR ====== -->
@@ -56,8 +62,7 @@
   <!-- ====== NAVIGATION ====== -->
   <header class="nav glass" id="navbar">
     <a href="#hero" class="nav-logo" aria-label="Home">
-      <span class="logo-mark"></></span>
-      <span class="logo-text">swari.dev</span>
+      <span class="logo-text gradient-text">swari.dev</span>
     </a>
     <nav class="nav-links" id="navLinks" aria-label="Primary">
       <a href="#about">About</a>
@@ -98,25 +103,23 @@
       </div>
 
       <div class="container hero-inner">
-        <div class="hero-left" data-depth="1">
-          <div class="terminal-card glass" id="terminal">
-            <div class="term-bar"><span></span><span></span><span></span><em>swari@dev: ~</em></div>
-            <div class="term-body">
-              <p><b class="tp">➜</b> <span id="terminalOutput"></span><span class="caret">▊</span></p>
-            </div>
-          </div>
+        <div class="hero-left">
           <p class="hero-eyebrow reveal">✦ Hello world, I'm</p>
           <h1 class="hero-title">
             <span class="line line-1">Ser John Rempillo</span>
             <span class="line line-2 gradient-text" id="typeLine"></span>
           </h1>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">Projects <span class="arrow">→</span></a>
+            <a href="#about" class="btn btn-ghost">About Me</a>
+          </div>
           <p class="hero-sub reveal">
             I craft <span class="hl">web application and more</span> from interface to backend. Hire me as your web
           designer or backend developer.
           </p>
           <div class="hero-cta reveal">
-            <a href="#projects" class="btn btn-primary magnetic">View Projects <span class="arrow">→</span></a>
-            <a href="#contact" class="btn btn-ghost magnetic">Contact Me</a>
+            <a href="#projects" class="btn btn-primary">View Projects <span class="arrow">→</span></a>
+            <a href="#contact" class="btn btn-ghost">Contact Me</a>
           </div>
           <div class="hero-meta reveal">
             <div class="meta-item"><b>2+</b><span>Years Exp.</span></div>
@@ -125,13 +128,13 @@
           </div>
         </div>
 
-        <div class="hero-right" data-depth="2">
-          <div class="profile-wrap tilt">
+        <div class="hero-right">
+          <div class="profile-wrap">
             <div class="profile-ring"></div>
             <div class="profile-card glass">
               <div class="avatar-glow"></div>
               <div class="avatar">
-                <img src="pfp2.png" alt="Ser John Rempillo — Full Stack Developer" width="90" height="90" />
+                <img src="pfp2.png" alt="Ser John Rempillo — Full Stack Developer" width="220" height="220" />
               </div>
               <div class="profile-info">
                 <h3>Ser John Rempillo</h3>
@@ -143,7 +146,6 @@
             <div class="float-tag ft2 glass">✦ Java</div>
             <div class="float-tag ft3 glass">■ Web Api</div>
           </div>
-        </div>
       </div>
       <a href="#about" class="scroll-ind" aria-label="Scroll to about">
         <span class="mouse"><span class="wheel"></span></span>
@@ -515,25 +517,65 @@
           <h2 class="sec-title">Milestones & <span class="gradient-text">stats</span></h2>
         </div>
         <div class="ach-grid">
-<div class="stat-ring reveal" data-target="98" data-label="Lighthouse">
-            <svg viewBox="0 0 120 120"><defs><linearGradient id="grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#a855f7"/><stop offset="100%" stop-color="#6a0dad"/></linearGradient></defs><circle class="ring-bg" cx="60" cy="60" r="52"/><circle class="ring-fg" cx="60" cy="60" r="52"/></svg>
-            <div class="stat-center"><b class="count" data-target="98">0</b><span>%</span></div>
+          <div class="stat-ring reveal" data-target="70" data-label="Lighthouse">
+            <svg viewBox="0 0 120 120"><defs><linearGradient id="grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" style="stop-color:var(--accent-600)"/><stop offset="100%" style="stop-color:var(--accent-800)"/></linearGradient></defs><circle class="ring-bg" cx="60" cy="60" r="52"/><circle class="ring-fg" cx="60" cy="60" r="52"/></svg>
+            <div class="stat-center"><b class="count" data-target="70">0</b><span>%</span></div>
           </div>
-          <div class="stat-ring reveal" data-target="120" data-label="Commits/Week">
-            <svg viewBox="0 0 120 120"><defs><linearGradient id="grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#a855f7"/><stop offset="100%" stop-color="#6a0dad"/></linearGradient></defs><circle class="ring-bg" cx="60" cy="60" r="52"/><circle class="ring-fg" cx="60" cy="60" r="52"/></svg>
-            <div class="stat-center"><b class="count" data-target="120">0</b><span>+</span></div>
+          <div class="stat-ring reveal" data-target="30" data-label="Commits/Week">
+            <svg viewBox="0 0 120 120"><defs><linearGradient id="grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" style="stop-color:var(--accent-600)"/><stop offset="100%" style="stop-color:var(--accent-800)"/></linearGradient></defs><circle class="ring-bg" cx="60" cy="60" r="52"/><circle class="ring-fg" cx="60" cy="60" r="52"/></svg>
+            <div class="stat-center"><b class="count" data-target="30">0</b><span>+</span></div>
           </div>
           <div class="stat-ring reveal" data-target="15" data-label="Open Source">
-            <svg viewBox="0 0 120 120"><defs><linearGradient id="grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#a855f7"/><stop offset="100%" stop-color="#6a0dad"/></linearGradient></defs><circle class="ring-bg" cx="60" cy="60" r="52"/><circle class="ring-fg" cx="60" cy="60" r="52"/></svg>
+            <svg viewBox="0 0 120 120"><defs><linearGradient id="grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" style="stop-color:var(--accent-600)"/><stop offset="100%" style="stop-color:var(--accent-800)"/></linearGradient></defs><circle class="ring-bg" cx="60" cy="60" r="52"/><circle class="ring-fg" cx="60" cy="60" r="52"/></svg>
             <div class="stat-center"><b class="count" data-target="15">0</b><span>+</span></div>
           </div>
         </div>
 
-        <div class="gh-card glass reveal">
-          <h3>GitHub Contributions</h3>
-          <div class="gh-heatmap" id="ghHeatmap"></div>
+        <div class="gh-card">
+          <div class="gh-months">
+            <span>Nov</span>
+            <span>Dec</span>
+            <span>Jan</span>
+            <span>Feb</span>
+            <span>Mar</span>
+            <span>Apr</span>
+            <span>May</span>
+            <span>Jun</span>
+            <span>Jul</span>
+            <span>Aug</span>
+            <span>Sep</span>
+            <span>Oct</span>
+            <span>Nov</span>
+          </div>
+
+          <div class="gh-body">
+            <div class="gh-days">
+              <span></span>
+              <span>Mon</span>
+              <span></span>
+              <span>Wed</span>
+              <span></span>
+              <span>Fri</span>
+              <span></span>
+            </div>
+            <div id="ghHeatmap" class="gh-grid"></div>
+          </div>
+
+          <div class="gh-footer">
+            <a href="#" class="gh-link">Learn how we count contributions</a>
+            <div class="gh-legend">
+              <span>Less</span>
+              <span class="gh-cell"></span>
+              <span class="gh-cell l1"></span>
+              <span class="gh-cell l2"></span>
+              <span class="gh-cell l3"></span>
+              <span class="gh-cell l4"></span>
+              <span>More</span>
+            </div>
+          </div>
         </div>
       </div>
+
     </section>
 
     <!-- ====== CONTACT ====== -->
@@ -603,7 +645,7 @@
   <!-- ====== FOOTER ====== -->
   <footer class="footer">
     <div class="container footer-inner">
-      <a href="#hero" class="nav-logo"><span class="logo-mark"></></span><span class="logo-text">SwaDev</span></a>
+      <a href="#hero" class="nav-logo"><span class="logo-text gradient-text">SwaDev</span></a>
       <nav class="foot-links">
         <a href="#about">About</a>
         <a href="#projects">Projects</a>
@@ -709,6 +751,7 @@
       </div>
     </div>
   <script src="js/main.js" defer></script>
+  <script src="js/hero-hover.js" defer></script>
   <script src="EmailJS.js"></script>
   <script
   type="text/javascript"

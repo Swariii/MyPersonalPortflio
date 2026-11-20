@@ -1,0 +1,17 @@
+/* =============================
+   THEME: Purple (Default)
+============================= */
+:root {
+  --bg: #1d0640;
+
+  --accent-950: #3b0a73;
+  --accent-800: #7c2bd6;
+  --accent-600: #a855f7;
+  --accent-300: #d3a4ff;
+
+  --accent-rgb: 168, 85, 247;
+  --accent-light-rgb: 211, 164, 255;
+  --accent-dark-rgb: 124, 43, 214;
+  --accent-deep-rgb: 59, 10, 115;
+  --nav-rgb: 12, 0, 26;
+}

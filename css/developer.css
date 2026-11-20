@@ -8,7 +8,7 @@
 
   border-radius: 50px;
 
-  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+  background: linear-gradient(135deg, var(--accent-600), var(--accent-800));
 
   color: white;
 
@@ -22,7 +22,7 @@
 .developer-btn:hover {
   transform: translateY(-5px);
 
-  box-shadow: 0 15px 35px rgba(138, 92, 246, 0.5);
+  box-shadow: 0 15px 35px rgba(var(--accent-rgb), 0.5);
 }
 
 /* =============================
@@ -96,7 +96,7 @@
 
   height: 500px;
 
-  background: linear-gradient(#7c3aed, #0ea5e9);
+  background: linear-gradient(var(--accent-800), var(--accent-300));
 
   border-radius: 50%;
 
@@ -118,7 +118,7 @@
 
   height: 400px;
 
-  background: linear-gradient(#ec4899, #8b5cf6);
+  background: linear-gradient(var(--accent-300), var(--accent-600));
 
   border-radius: 50%;
 
@@ -254,7 +254,7 @@
 
   overflow: hidden;
 
-  border: 5px solid #8b5cf6;
+  border: 5px solid var(--accent-600);
 
   animation: floating 4s ease-in-out infinite;
 }
@@ -302,7 +302,7 @@
 }
 
 .backend {
-  background: #7c3aed;
+  background: var(--accent-800);
 }
 
 .frontend {
@@ -330,7 +330,7 @@
 }
 
 .contact-card:hover {
-  background: #8b5cf6;
+  background: var(--accent-600);
 
   transform: scale(1.05);
 }
@@ -348,6 +348,7 @@
 
   letter-spacing: 1px;
 }
+
 .portfolio-btn {
   display: block;
   margin-top: 18px;
@@ -361,7 +362,7 @@
 
   border-radius: 12px;
 
-  background: linear-gradient(135deg, #8b5cf6, #4f46e5);
+  background: linear-gradient(135deg, var(--accent-600), var(--accent-800));
 
   transition: 0.35s;
 
@@ -388,9 +389,10 @@
 
 .portfolio-btn:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(139, 92, 246, 0.45);
-  background: linear-gradient(135deg, #9333ea, #2563eb);
+  box-shadow: 0 12px 30px rgba(var(--accent-rgb), 0.45);
+  background: linear-gradient(135deg, var(--accent-300), var(--accent-600));
 }
+
 /* =========================================================
    RESPONSIVE DESIGN
 ========================================================= */

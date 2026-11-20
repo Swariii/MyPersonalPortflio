@@ -1,0 +1,394 @@
+/* =========================================================
+   INTRO / LOADING SCREEN
+   Sumusunod sa napiling theme (gumagamit ng --accent-* at --bg)
+========================================================= */
+
+/* tinatakpan ang page habang hindi pa nabubuo ang intro (walang flash) */
+html.intro-lock {
+  overflow: hidden;
+}
+
+html.intro-lock::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 9990;
+}
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  font-family: var(--font-head);
+  color: var(--white);
+}
+
+/* ---------- Curtain (dalawang kalahati na bumubukas) ---------- */
+.intro-panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50.5%;
+  background:
+    radial-gradient(60% 120% at 50% 100%, rgba(var(--accent-rgb), 0.22), transparent 70%),
+    var(--bg);
+  transition: transform 1s cubic-bezier(0.76, 0, 0.24, 1);
+  will-change: transform;
+}
+
+.intro-top {
+  top: 0;
+  transform-origin: top;
+}
+
+.intro-bottom {
+  bottom: 0;
+  background:
+    radial-gradient(60% 120% at 50% 0%, rgba(var(--accent-rgb), 0.22), transparent 70%),
+    var(--bg);
+}
+
+/* ilaw sa gitna ng bukas na curtain */
+.intro-seam {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  background: var(--grad);
+  box-shadow: 0 0 24px 4px rgba(var(--accent-rgb), 0.8);
+  transform: scaleX(0);
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s;
+  z-index: 2;
+}
+
+.intro.is-done .intro-seam {
+  transform: scaleX(1);
+}
+
+.intro.is-open .intro-top {
+  transform: translateY(-101%);
+}
+
+.intro.is-open .intro-bottom {
+  transform: translateY(101%);
+}
+
+.intro.is-open .intro-seam {
+  opacity: 0;
+}
+
+/* ---------- Background FX ---------- */
+.intro-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image:
+    linear-gradient(rgba(var(--accent-rgb), 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--accent-rgb), 0.09) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: radial-gradient(circle at 50% 50%, #000, transparent 70%);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, #000, transparent 70%);
+  animation: introGrid 6s linear infinite;
+}
+
+@keyframes introGrid {
+  to {
+    background-position: 52px 52px;
+  }
+}
+
+.intro-glow {
+  position: absolute;
+  z-index: 1;
+  width: min(620px, 90vw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--accent-rgb), 0.45), transparent 65%);
+  filter: blur(50px);
+  animation: introPulse 3s ease-in-out infinite;
+}
+
+@keyframes introPulse {
+  50% {
+    transform: scale(1.18);
+    opacity: 0.75;
+  }
+}
+
+.intro-scan {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  height: 120px;
+  top: -120px;
+  background: linear-gradient(180deg, transparent, rgba(var(--accent-rgb), 0.18), transparent);
+  border-bottom: 1px solid rgba(var(--accent-light-rgb), 0.5);
+  animation: introScan 2.6s linear infinite;
+}
+
+@keyframes introScan {
+  to {
+    transform: translateY(calc(100vh + 120px));
+  }
+}
+
+/* corner brackets */
+.intro-corner {
+  position: absolute;
+  z-index: 3;
+  width: 38px;
+  height: 38px;
+  border: 2px solid var(--accent-600);
+  opacity: 0;
+  animation: introFade 0.6s 0.2s forwards;
+}
+
+.intro-corner.tl { top: 28px; left: 28px; border-right: 0; border-bottom: 0; }
+.intro-corner.tr { top: 28px; right: 28px; border-left: 0; border-bottom: 0; }
+.intro-corner.bl { bottom: 28px; left: 28px; border-right: 0; border-top: 0; }
+.intro-corner.br { bottom: 28px; right: 28px; border-left: 0; border-top: 0; }
+
+@keyframes introFade {
+  to {
+    opacity: 1;
+  }
+}
+
+/* ---------- Content ---------- */
+.intro-center {
+  position: relative;
+  z-index: 3;
+  width: min(900px, 92%);
+  text-align: center;
+  transition: opacity 0.5s, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), filter 0.5s;
+}
+
+.intro.is-done .intro-center {
+  opacity: 0;
+  transform: scale(1.08);
+  filter: blur(6px);
+}
+
+.intro-eyebrow {
+  font-family: var(--font-mono);
+  letter-spacing: 4px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  color: var(--accent-300);
+  margin-bottom: 18px;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: introUp 0.7s 0.1s var(--ease) forwards;
+}
+
+.intro-name {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 0.28em;
+  font-size: clamp(2.4rem, 9vw, 6.2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  perspective: 700px;
+}
+
+.intro-word {
+  display: inline-flex;
+}
+
+.intro-ch {
+  display: inline-block;
+  background: var(--grad);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  opacity: 0;
+  transform-origin: 50% 100%;
+  animation:
+    introChar 0.8s calc(0.35s + var(--i) * 0.07s) cubic-bezier(0.22, 1, 0.36, 1) forwards,
+    introShimmer 2.4s calc(0.35s + var(--i) * 0.07s) linear infinite;
+  filter: drop-shadow(0 0 18px rgba(var(--accent-rgb), 0.55));
+}
+
+@keyframes introChar {
+  from {
+    opacity: 0;
+    transform: translateY(70%) rotateX(-90deg) scale(0.8);
+    filter: blur(14px) drop-shadow(0 0 0 transparent);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0) drop-shadow(0 0 18px rgba(var(--accent-rgb), 0.55));
+  }
+}
+
+@keyframes introShimmer {
+  to {
+    background-position: -300% 0;
+  }
+}
+
+/* glitch pag malapit nang matapos */
+.intro-name::before,
+.intro-name::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.intro-name::before { color: var(--accent-300); }
+.intro-name::after  { color: #fff; }
+
+.intro.is-glitch .intro-name::before {
+  opacity: 0.85;
+  animation: introGlitchA 0.5s steps(2) 2;
+}
+
+.intro.is-glitch .intro-name::after {
+  opacity: 0.6;
+  animation: introGlitchB 0.5s steps(2) 2;
+}
+
+@keyframes introGlitchA {
+  0%   { clip-path: inset(10% 0 70% 0); transform: translate(-6px, 0); }
+  25%  { clip-path: inset(55% 0 20% 0); transform: translate(5px, 0); }
+  50%  { clip-path: inset(30% 0 45% 0); transform: translate(-4px, 0); }
+  75%  { clip-path: inset(75% 0 5% 0);  transform: translate(6px, 0); }
+  100% { clip-path: inset(0 0 90% 0);   transform: translate(0, 0); }
+}
+
+@keyframes introGlitchB {
+  0%   { clip-path: inset(60% 0 10% 0); transform: translate(6px, 0); }
+  25%  { clip-path: inset(15% 0 60% 0); transform: translate(-5px, 0); }
+  50%  { clip-path: inset(40% 0 35% 0); transform: translate(4px, 0); }
+  75%  { clip-path: inset(5% 0 80% 0);  transform: translate(-6px, 0); }
+  100% { clip-path: inset(90% 0 0 0);   transform: translate(0, 0); }
+}
+
+.intro-role {
+  margin-top: 14px;
+  font-family: var(--font-mono);
+  font-size: clamp(0.8rem, 2vw, 1rem);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gray-dim);
+  opacity: 0;
+  animation: introUp 0.8s 1.5s var(--ease) forwards;
+}
+
+@keyframes introUp {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Loader ---------- */
+.intro-load {
+  width: min(420px, 86%);
+  margin: 46px auto 0;
+  opacity: 0;
+  animation: introUp 0.7s 0.9s var(--ease) forwards;
+}
+
+.intro-bar {
+  height: 4px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+
+.intro-bar i {
+  display: block;
+  height: 100%;
+  width: 100%;
+  border-radius: inherit;
+  background: var(--grad);
+  box-shadow: 0 0 14px rgba(var(--accent-rgb), 0.9);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.intro-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--gray-dim);
+}
+
+.intro-status::after {
+  content: "▊";
+  margin-left: 4px;
+  color: var(--accent-300);
+  animation: blink 1s steps(1) infinite;
+}
+
+.intro-pct {
+  font-size: 1.4rem;
+  color: var(--white);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Skip ---------- */
+.intro-skip {
+  position: absolute;
+  z-index: 4;
+  right: 32px;
+  bottom: 32px;
+  padding: 8px 16px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gray-dim);
+  border: 1px solid var(--stroke);
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.05);
+  transition: color 0.3s, border-color 0.3s, background 0.3s;
+}
+
+.intro-skip:hover {
+  color: #fff;
+  border-color: var(--accent-600);
+  background: rgba(var(--accent-rgb), 0.2);
+}
+
+.intro.is-done .intro-skip {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 560px) {
+  .intro-corner { width: 26px; height: 26px; }
+  .intro-corner.tl, .intro-corner.tr { top: 16px; }
+  .intro-corner.bl, .intro-corner.br { bottom: 16px; }
+  .intro-corner.tl, .intro-corner.bl { left: 16px; }
+  .intro-corner.tr, .intro-corner.br { right: 16px; }
+  .intro-skip { right: 20px; bottom: 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-scan, .intro-grid, .intro-glow { animation: none; }
+  .intro-ch { animation: introChar 0.3s forwards; }
+}

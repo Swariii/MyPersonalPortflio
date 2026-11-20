@@ -1,0 +1,17 @@
+/* =============================
+   THEME: Black Red
+============================= */
+:root {
+  --bg: #000000;
+
+  --accent-950: #4a0008;
+  --accent-800: #b30012;
+  --accent-600: #ef233c;
+  --accent-300: #ff7b89;
+
+  --accent-rgb: 239, 35, 60;
+  --accent-light-rgb: 255, 123, 137;
+  --accent-dark-rgb: 179, 0, 18;
+  --accent-deep-rgb: 74, 0, 8;
+  --nav-rgb: 20, 0, 3;
+}

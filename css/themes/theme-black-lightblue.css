@@ -1,0 +1,17 @@
+/* =============================
+   THEME: Black Light Blue
+============================= */
+:root {
+  --bg: #000000;
+
+  --accent-950: #00283d;
+  --accent-800: #0284c7;
+  --accent-600: #38bdf8;
+  --accent-300: #7dd3fc;
+
+  --accent-rgb: 56, 189, 248;
+  --accent-light-rgb: 125, 211, 252;
+  --accent-dark-rgb: 2, 132, 199;
+  --accent-deep-rgb: 0, 40, 61;
+  --nav-rgb: 0, 8, 16;
+}

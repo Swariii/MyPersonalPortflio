@@ -1,0 +1,110 @@
+/* =============================
+   THEME SWITCHER (maliit na bilog sa gilid)
+============================= */
+.theme-switcher {
+  position: fixed;
+  right: 24px;
+  bottom: 100px;           /* nasa taas ng AI widget */
+  z-index: 960;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 12px;
+}
+
+.theme-toggle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--accent-300);
+  background: rgba(var(--nav-rgb), 0.85);
+  border: 1px solid var(--stroke-strong);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: var(--glow);
+  transition: transform 0.3s var(--ease), background 0.3s;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1) rotate(15deg);
+}
+
+.theme-toggle svg {
+  width: 22px;
+  height: 22px;
+}
+
+.theme-options {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 40px;
+  background: rgba(var(--nav-rgb), 0.85);
+  border: 1px solid var(--stroke);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px) scale(0.9);
+  transform-origin: bottom center;
+  transition: opacity 0.3s, transform 0.4s var(--ease), visibility 0.3s;
+}
+
+.theme-switcher.open .theme-options {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.theme-swatch {
+  position: relative;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  background: linear-gradient(135deg, var(--sw-a) 50%, var(--sw-b) 50%);
+  transition: transform 0.25s var(--ease), border-color 0.25s;
+}
+
+.theme-swatch:hover {
+  transform: scale(1.18);
+}
+
+.theme-swatch[aria-pressed="true"] {
+  border-color: #fff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.18);
+}
+
+/* tooltip */
+.theme-swatch::after {
+  content: attr(data-label);
+  position: absolute;
+  right: calc(100% + 14px);
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  font-size: 0.75rem;
+  padding: 5px 10px;
+  border-radius: 8px;
+  color: #fff;
+  background: rgba(var(--nav-rgb), 0.95);
+  border: 1px solid var(--stroke);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.theme-swatch:hover::after,
+.theme-swatch:focus-visible::after {
+  opacity: 1;
+}
+
+@media (max-width: 560px) {
+  .theme-switcher {
+    right: 16px;
+    bottom: 88px;
+  }
+}
