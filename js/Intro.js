@@ -1,15 +1,22 @@
 /* =========================================================
    INTRO / LOADING SCREEN
-   Name + loading, glitch, tapos bubukas ang page.
-   Para palitan ang pangalan, baguhin lang ang NAME / ROLE sa baba.
+   Name + loading, glitch (may sound effect), tapos bubukas ang page.
+   Palitan ang NAME / ROLE / mga SOUND settings sa baba.
 ========================================================= */
 (function () {
   "use strict";
 
+  /* ---------- SETTINGS ---------- */
   var NAME = "Ser John Rempillo";
   var ROLE = "Future Full Stack Developer";
   var DURATION = 3200;               // ilang ms bago umabot sa 100%
-  var STATUS = [                     // lalabas habang nagloload
+
+  var SOUND_ON = true;               // false = walang tunog
+  var SOUND_FILE = "audio/glitch.mp3";  // path ng sarili mong sound (galing sa index.html)
+  var SOUND_VOLUME = 0.8;            // 0 hanggang 1
+  var STOP_ON_OPEN = false;          // true = puputulin ang tunog pag bumukas na ang curtain
+
+  var STATUS = [
     [0,  "> booting portfolio"],
     [25, "> loading assets"],
     [55, "> compiling projects"],
@@ -27,6 +34,62 @@
   var pageLoaded = document.readyState === "complete";
   window.addEventListener("load", function () { pageLoaded = true; });
 
+  /* =========================================================
+     GLITCH SOUND (sarili mong audio file)
+  ========================================================= */
+  var glitchAudio = null;
+
+  if (SOUND_ON && SOUND_FILE) {
+    glitchAudio = new Audio(SOUND_FILE);   // i-preload para handa na pag dating ng glitch
+    glitchAudio.preload = "auto";
+    glitchAudio.volume = SOUND_VOLUME;
+    glitchAudio.addEventListener("error", function () {
+      console.error("Glitch sound: hindi mahanap o ma-load ang '" + SOUND_FILE + "'.");
+    });
+  }
+
+  var soundPlayed = false;
+
+  function playGlitchSound() {
+    if (!glitchAudio || soundPlayed) return;
+    var p;
+    try { p = glitchAudio.play(); } catch (e) { return; }
+    if (p && p.then) {
+      p.then(function () { soundPlayed = true; }).catch(function (err) {
+        if (err && err.name !== "NotAllowedError") {
+          // hindi block ng browser: mali ang path/pangalan ng file o hindi supported ang format
+          console.error("Glitch sound: hindi ma-play ang '" + SOUND_FILE + "' (" + err.name + "). Check ang pangalan/path ng file.");
+          return;
+        }
+        console.info("Glitch sound: hinarang ng browser ang auto-play (wala pang click ang bisita).");
+        // tutunog sa unang click/tap/key sa loob ng 10 segundo
+        var tries = ["pointerdown", "keydown", "touchstart"];
+        var retry = function () {
+          tries.forEach(function (ev) { window.removeEventListener(ev, retry, true); });
+          if (soundPlayed) return;
+          glitchAudio.play().then(function () { soundPlayed = true; }).catch(function () {});
+        };
+        tries.forEach(function (ev) { window.addEventListener(ev, retry, true); });
+        setTimeout(function () {
+          tries.forEach(function (ev) { window.removeEventListener(ev, retry, true); });
+        }, 10000);
+      });
+    }
+  }
+
+  function stopGlitchSound() {
+    if (!glitchAudio) return;
+    var v0 = glitchAudio.volume, i = 0;
+    var iv = setInterval(function () {
+      i++;
+      glitchAudio.volume = Math.max(v0 * (1 - i / 10), 0);
+      if (i >= 10) { clearInterval(iv); glitchAudio.pause(); }
+    }, 40);
+  }
+
+  /* =========================================================
+     UI
+  ========================================================= */
   function build() {
     var el = document.createElement("div");
     el.className = "intro";
@@ -69,7 +132,8 @@
     var status = el.querySelector(".intro-status");
     var skip = el.querySelector(".intro-skip");
 
-    var start = performance.now();
+    var start = 0;
+    var started = false;
     var finishing = false;
     var forced = false;
     var lastStatus = 0;
@@ -93,10 +157,12 @@
       finishing = true;
       setProgress(1);
       el.classList.add("is-glitch");
+      playGlitchSound();                                // 🔊 dito lalabas ang glitch sound
       setTimeout(function () {
-        el.classList.add("is-done");                    // fade ang content + lalabas ang seam
+        el.classList.add("is-done");
         setTimeout(function () {
-          el.classList.add("is-open");                  // bubukas ang curtain
+          el.classList.add("is-open");
+          if (STOP_ON_OPEN) stopGlitchSound();
           root.classList.remove("intro-lock");
           window.scrollTo(0, 0);
           setTimeout(function () {
@@ -111,10 +177,17 @@
       if (finishing) return;
       var t = Math.min((now - start) / DURATION, 1);
       var p = ease(t);
-      // hintayin ang totoong pag-load ng page bago mag-100%
-      if (!pageLoaded && !forced) p = Math.min(p, 0.92);
+      if (!pageLoaded && !forced) p = Math.min(p, 0.92);   // hintayin ang totoong pag-load
       setProgress(p);
       if (p >= 1) { finish(); return; }
+      requestAnimationFrame(tick);
+    }
+
+    function begin() {
+      if (started) return;
+      started = true;
+      start = performance.now();
+      setTimeout(function () { forced = true; }, DURATION + 2500);   // failsafe
       requestAnimationFrame(tick);
     }
 
@@ -123,12 +196,19 @@
       if (e.key === "Escape" || e.key === " ") { forced = true; finish(); }
     });
 
-    requestAnimationFrame(tick);
+    begin();
+  }
+
+  function safeRun() {
+    try { run(); } catch (err) {
+      root.classList.remove("intro-lock");
+      console.error("Intro error:", err);
+    }
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", run);
+    document.addEventListener("DOMContentLoaded", safeRun);
   } else {
-    run();
+    safeRun();
   }
 })();
