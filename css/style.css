@@ -647,6 +647,7 @@ h4 {
   color: var(--accent-300);
   letter-spacing: 2px;
   margin-bottom: 14px;
+  margin-top: 100px;
 }
 
 .hero-title {
@@ -654,7 +655,6 @@ h4 {
   font-weight: 800;
   letter-spacing: -0.03em;
   margin-bottom: 20px;
-  margin-top: 100px;
 }
 
 .hero-title .line {
@@ -968,6 +968,7 @@ h4 {
   box-shadow: var(--shadow);
   backdrop-filter: blur(8px);
   opacity: 0.85;
+  margin-left: 30vw;
 }
 
 .hero-code .tk {
