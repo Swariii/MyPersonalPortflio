@@ -667,7 +667,7 @@ h4 {
 
 .hero-title .line-2 {
   font-size: clamp(2.2rem, 3vw, 4rem);
-  min-height: 1.2em;          /* may nakareserba na space kahit wala pang tinatype */
+  min-height: 1.2em;/* may nakareserba na space kahit wala pang tinatype */
   line-height: 1.2;
   overflow-wrap: anywhere;
 }
