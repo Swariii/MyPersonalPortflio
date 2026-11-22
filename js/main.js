@@ -178,10 +178,10 @@
   ========================================================= */
   const typeLine = document.getElementById("typeLine");
   const roles = [
-    "Creative Developer",
-    "Backend Developer",
-    "Database Management",
-    "UI/UX Designer",
+    "Aspiring Creative Developer",
+    "Aspiring Backend Developer",
+    "Aspiring Data Manager",
+    "Aspiring UI/UX Designer",
     "College Student",
   ];
   if (typeLine) {
